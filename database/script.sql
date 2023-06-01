@@ -57,6 +57,7 @@ CREATE TABLE categorias (
 
 CREATE TABLE unidades_medida (
     id_unidade_medida int PRIMARY KEY,
+	sg_unidade_medida char(2),
     ds_unidade_medida char(100)
 );
 

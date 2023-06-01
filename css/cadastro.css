@@ -9,38 +9,30 @@
   --radius: 0.5rem;
 }
 
-.slide {
+body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70vh;
+  flex-direction: column;
+  padding: 2rem;
 }
 
-.line {
-  width: 100%;
-  height: 7px;
-  background-color: var(--primary-color);
-  margin-bottom: 2rem;
+.back {
+  align-self: baseline;
 }
 
-.products {
-  margin-top: 2rem;
+form {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
-  align-items: center;
-  justify-content: center;
-}
 
-.card {
-  width: 300px;
-  border: 1px solid var(--secondary-color);
-  border-radius: var(--radius);
+  width: 400px;
+  max-width: 90%;
   background-color: var(--light-color);
-  padding: 0.5rem;
-}
+  padding: 1rem 2rem;
 
-.card img {
+  border: 1px solid var(--primary-color);
   border-radius: var(--radius);
-  height: 200px;
 }
