@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<?php
-if (isset($_COOKIE["login"])) {
-  $data = unserialize($_COOKIE["login"]);
-} else {
-  header("location:./welcome.php");
-}
-?>
 <html lang="pt-BR">
 
 <head>
@@ -23,11 +16,9 @@ if (isset($_COOKIE["login"])) {
   <!-- CSS -->
   <link rel="stylesheet" href="./css/styles.css" />
   <link rel="stylesheet" href="./css/home.css" />
-  <link rel="stylesheet" href="./css/menu.css" />
   <!-- JS -->
   <script defer src="https://cdn.jsdelivr.net/npm/keen-slider@6.8.5/keen-slider.min.js"></script>
   <script defer src="./js/slider.js"></script>
-  <script defer src="./js/menu.js"></script>
 </head>
 
 <body>
@@ -37,14 +28,8 @@ if (isset($_COOKIE["login"])) {
         <img src="./img/logo.svg" alt="Logo Petopia" height="80" />
       </a>
       <div class="links">
-        <span id="open">&#9776;</span>
-      </div>
-      <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" id="close">&times;</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a href="./login.php">Login</a>
+        <a href="./cadastro.php">Cadastro</a>
       </div>
     </div>
   </header>

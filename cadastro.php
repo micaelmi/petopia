@@ -1,4 +1,21 @@
 <!DOCTYPE html>
+
+<?php
+
+$nome = filter_input(INPUT_GET, 'nome');
+$email = filter_input(INPUT_GET, 'email');
+$cpf_cnpj = filter_input(INPUT_GET, 'cpf_cnpj');
+$cep = filter_input(INPUT_GET, 'cep');
+$uf = filter_input(INPUT_GET, 'uf');
+$cidade = filter_input(INPUT_GET, 'cidade');
+$bairro = filter_input(INPUT_GET, 'bairro');
+$rua = filter_input(INPUT_GET, 'rua');
+$numero = filter_input(INPUT_GET, 'numero');
+$senha = filter_input(INPUT_GET, 'senha');
+
+$erro = filter_input(INPUT_GET, 'erro');
+?>
+
 <html lang="pt-BR">
 
 <head>
@@ -23,23 +40,24 @@
 </head>
 
 <body>
-  <a href="./" class="back">
-    <img src="./img/back.png" alt="Voltar" />
-  </a>
-  <form action="cadastrar.php">
+  <form method="POST" action="./modules/clientes/backend/cadastrar.php">
     <img src="./img/logo.svg" alt="Logo Petopia" />
     <h1>Cadastre-se!</h1>
-    <input required type="text" placeholder="Nome" />
-    <input required type="email" placeholder="E-mail" />
-    <input required type="text" id="cpf-cnpj" placeholder="CPF/CNPJ" />
-    <input required id="cep" onblur="pesquisacep(this.value);" type="text" placeholder="CEP" />
-    <input required id="uf" type="text" placeholder="Estado" />
-    <input required id="cidade" type="text" placeholder="Cidade" />
-    <input required id="bairro" type="text" placeholder="Bairro" />
-    <input required id="rua" type="text" placeholder="Logradouro" />
-    <input required type="number" placeholder="Número" />
-    <input required type="password" placeholder="Senha" />
+    <div class="erro">
+      <span id="erro"><?= $erro ?></span>
+    </div>
+    <input required value="<?= $nome ?>" name="nome" type="text" placeholder="Nome" />
+    <input required value="<?= $email ?>" name="email" type="email" placeholder="E-mail" />
+    <input required value="<?= $cpf_cnpj ?>" name="cpf_cnpj" type="text" id="cpf-cnpj" placeholder="CPF/CNPJ" />
+    <input required value="<?= $cep ?>" name="cep" id="cep" onblur="pesquisacep(this.value)" type="text" placeholder="CEP" />
+    <input required value="<?= $uf ?>" name="uf" id="uf" type="text" placeholder="Estado" />
+    <input required value="<?= $cidade ?>" name="cidade" id="cidade" type="text" placeholder="Cidade" />
+    <input required value="<?= $bairro ?>" name="bairro" id="bairro" type="text" placeholder="Bairro" />
+    <input required value="<?= $rua ?>" name="rua" id="rua" type="text" placeholder="Logradouro" />
+    <input required value="<?= $numero ?>" name="numero" type="number" placeholder="Número" />
+    <input required value="<?= $senha ?>" name="senha" type="password" placeholder="Senha" />
     <button type="submit">Cadastrar</button>
+    <a href="./login.php">Já ama os animais? Entre com sua conta</a>
   </form>
 </body>
 
