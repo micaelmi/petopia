@@ -96,11 +96,7 @@
       </div>
     </div>
   </main>
-  <footer>
-    <a href="/">
-      <img src="./img/logo.svg" alt="Logo Petopia" />
-    </a>
-  </footer>
+  <?php include_once 'footer.php'; ?>
 </body>
 
 </html>

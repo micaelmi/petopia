@@ -1,0 +1,28 @@
+:root {
+  --primary-color: #f28705;
+  --primary-color-hover: #d0973d;
+  --secondary-color: #022859;
+  --secondary-color-hover: #1e58a3;
+  --tertiary-color: #734a27;
+  --background-color: #f3ecdf;
+  --light-color: #ffffff;
+  --transition: 0.5s ease;
+  --radius: 0.5rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  text-transform: uppercase;
+  align-items: center;
+}
+
+nav a {
+  color: var(--tertiary-color);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+nav a:hover {
+  color: var(--primary-color-hover);
+}
