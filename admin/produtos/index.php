@@ -11,30 +11,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Righteous&display=swap" rel="stylesheet" />
 
-  <link rel="shortcut icon" href="../img/icon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="../../img/icon.png" type="image/x-icon" />
   <!-- CSS -->
-  <link rel="stylesheet" href="../css/styles.css" />
-  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <link rel="stylesheet" href="../../css/admin.css" />
   <!-- JS -->
 </head>
 
 <body>
-  <?php include_once 'header.php'; ?>
+  <?php include_once '../header.php'; ?>
   <nav class="container box">
-    <a href="#">
-      Produto
+    <a class="active" href="../produtos">
+      Produtos
     </a>
-    <a href="#">
-      Categoria & Unidade de medida
+    <a href="../categorias">
+      Categorias & Unidades de medida
     </a>
-    <a href="#">
-      Vendedor
+    <a href="../vendedores">
+      Vendedores
     </a>
-    <a href="#">
-      Transportadora
+    <a href="../transportadoras">
+      Transportadoras
     </a>
   </nav>
-  <?php include_once 'footer.php'; ?>
+  <?php include_once '../footer.php'; ?>
 </body>
 
 </html>

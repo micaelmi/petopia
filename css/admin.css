@@ -26,3 +26,122 @@ nav a {
 nav a:hover {
   color: var(--primary-color-hover);
 }
+
+nav a.active {
+  background-color: var(--tertiary-color);
+  color: var(--light-color);
+  border-radius: var(--radius);
+  padding: 0.5rem;
+}
+
+.box {
+  margin-top: 4.5rem;
+}
+
+.form {
+  padding: 1rem 2rem;
+  margin-inline: auto;
+}
+
+fieldset {
+  border: 1px solid var(--tertiary-color);
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+fieldset legend,
+h2 {
+  font-size: 1rem;
+  color: var(--primary-color);
+  padding-inline: 0.5rem;
+  font-weight: 600;
+}
+
+h2 {
+  margin: 1rem 0;
+}
+
+fieldset p {
+  color: var(--tertiary-color);
+}
+
+.categorias {
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+.table-container {
+  width: 80%;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  text-align: center;
+}
+
+td,
+th {
+  color: var(--tertiary-color);
+  border: 1px solid var(--tertiary-color);
+  border-inline-width: 0;
+  padding: 0.5rem;
+}
+
+th:first-child,
+td:first-child {
+  border-left-width: 1px;
+}
+th:last-child,
+td:last-child {
+  border-right-width: 1px;
+}
+
+td .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+td .actions button {
+  background: none;
+}
+
+tr:first-child th:first-child {
+  border-top-left-radius: var(--radius);
+}
+tr:first-child th:last-child {
+  border-top-right-radius: var(--radius);
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: var(--radius);
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: var(--radius);
+}
+
+tr:first-child td {
+  border-top-style: solid;
+}
+tr td:first-child {
+  border-left-style: solid;
+}
+
+#save {
+  padding: 0.25rem 0.5rem;
+  color: var(--tertiary-color);
+  border-radius: var(--radius);
+  border: 1px solid var(--tertiary-color);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+#save:hover {
+  color: var(--primary-color-hover);
+  border-color: var(--primary-color-hover);
+}
