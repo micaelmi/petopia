@@ -9,3 +9,30 @@
     --transition: 0.5s ease;
     --radius: 0.5rem;
   }
+
+  .box {
+    margin-top: 4.5rem;
+  }
+  
+  .form {
+    padding: 53px 171px; /* top, right, bottom, left*/
+  }
+
+  fieldset {
+    border: 1px solid var(--tertiary-color);
+    border-radius: 10px;
+    padding: 60px 227px;
+    
+    height: 300px;
+    width: 800px;
+  }
+
+.primeiro {
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+.legendaDois {
+  border: 1px solid var(--tertiary-color);
+}
+
