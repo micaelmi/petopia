@@ -9,8 +9,6 @@
 </head>
 <body>
 <?php include_once 'header.php'; ?>
-    
-    
     <nav class="container box">
         <a href="#">
         Produto
