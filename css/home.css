@@ -1,0 +1,46 @@
+:root {
+  --primary-color: #f28705;
+  --primary-color-hover: #d0973d;
+  --secondary-color: #022859;
+  --secondary-color-hover: #1e58a3;
+  --background-color: #f3ecdf;
+  --light-color: #ffffff;
+  --transition: 0.5s ease;
+  --radius: 0.5rem;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+.line {
+  width: 100%;
+  height: 7px;
+  background-color: var(--primary-color);
+  margin-bottom: 2rem;
+}
+
+.products {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 300px;
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--radius);
+  background-color: var(--light-color);
+  padding: 0.5rem;
+}
+
+.card img {
+  border-radius: var(--radius);
+  height: 200px;
+}
