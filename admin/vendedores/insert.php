@@ -4,7 +4,8 @@ $cpf_cnpj = filter_input(INPUT_POST, "cpf_cnpj", FILTER_SANITIZE_SPECIAL_CHARS);
 
 include_once '../../functions/database.php';
 $bd = connection();
-$sql = "INSERT INTO ";
+$sql = "INSERT INTO vendedores (id_vendedor, nm_vendedor, cpf_cnpj_vendedor) VALUES (NULL, '$nome', '$cpf_cnpj')";
+
 try {
   $bd->beginTransaction();
   $linhas = $bd->exec($sql);
@@ -18,13 +19,7 @@ try {
   $params = dbError($ex);
 
   $params .= "&nome=$nome";
-  $params .= "&descricao=$descricao";
-  $params .= "&valor=$valor";
-  $params .= "&quantidade=$quantidade";
-  $params .= "&dimensoes=$dimensoes";
-  $params .= "&peso=$peso";
-  $params .= "&medida=$medida";
-  $params .= "&categoria=$categoria";
+  $params .= "&cpf_cnpj=$cpf_cnpj";
 
   $bd = null;
   header("location:index.php?$params");
@@ -33,4 +28,4 @@ try {
 
 $bd = null;
 
-header("location:../");
+header("location:index.php");

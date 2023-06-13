@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+
+<?php
+include_once '../../functions/database.php';
+
+$nome = filter_input(INPUT_GET, "nome");
+$cpf_cnpj = filter_input(INPUT_GET, "cpf_cnpj");
+
+$banco = connection();
+$sql = "SELECT * FROM transportadoras ORDER BY nm_transportadora";
+$resultado = $banco->query($sql);
+?>
 <html lang="pt-BR">
 
 <head>
@@ -37,56 +48,56 @@
   <main class="container box">
     <div class="form">
       <h1>Cadastro de transportadora</h1>
+      <fieldset>
+          <legend>Cadastrar</legend>
+          <form action="insert.php" method="POST">
+              <input type="text" value="<?= $cpf_cnpj ?>" name="cpf_cnpj" id="cpf_cnpj" placeholder="CPF ou CNPJ">
+              <input type="text" value="<?= $nome ?>" name="nome" id="nome" placeholder="Nome">
+              <input type="text" value="<?= $cep ?>" name="cep" id="cep" placeholder="CEP">
+              <input type="text" value="<?= $estado ?>" name="estado" id="estado" placeholder="Estado">
+              <input type="text" value="<?= $cidade ?>" name="cidade" id="cidade" placeholder="Cidade">
+              <input type="text" value="<?= $bairro ?>" name="bairro" id="bairro" placeholder="Bairro">
+              <input type="text" value="<?= $rua ?>" name="rua" id="rua" placeholder="Rua">
+              <input type="text" value="<?= $numero ?>" name="numero" id="numero" placeholder="Número">
+              <button type="submit">Salvar</button>
+          </form>
+      </fieldset>
       <h2>
         Transportadoras cadastradas
       </h2>
-      <table>
-        <tr>
-          <th>CPF/CNPJ</th>
-          <th>Nome</th>
-          <th>CEP</th>
-          <th>Estado</th>
-          <th>Cidade</th>
-          <th>Bairro</th>
-          <th>Rua</th>
-          <th>Número</th>
-          <th>
-            <span id="save">Salvar</span>
-          </th>
-        </tr>
-        <tr>
-          <td>399.678.332/0001</td>
-          <td>Piracaiao Transportes LTDA</td>
-          <td>12970-000</td>
-          <td>SP</td>
-          <td>Piracaia</td>
-          <td>Centro</td>
-          <th>Rua Alvorada</th>
-          <th>45</th>
-          <td>
-            <div class="actions">
-              <button title="Editar"><img src="../../img/edit.svg" alt="Editar"></button>
-              <button title="Apagar"><img src="../../img/delete.svg" alt="Deletar"></button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>240.654.323-01</td>
-          <td>Express Transportes rápidos BR</td>
-          <td>04959-030</td>
-          <td>SP</td>
-          <td>São Caetano do Sul</td>
-          <td>Formigueiros</td>
-          <th>Rua Presidente Armando III</th>
-          <th>4532</th>
-          <td>
-            <div class="actions">
-              <button title="Editar"><img src="../../img/edit.svg" alt="Editar"></button>
-              <button title="Apagar"><img src="../../img/delete.svg" alt="Deletar"></button>
-            </div>
-          </td>
-        </tr>
-      </table>
+      <div class="registro_categoria bold">
+          <p>CPF/CNPJ</p>
+          <p>Nome</p>
+          <p>CEP</p>
+          <p>Estado</p>
+          <p>Cidade</p>
+          <p>Bairro</p>
+          <p>Rua</p>
+          <p>Número</p>
+          <p>Ações</p>
+      </div>
+      <?php
+      while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
+      ?>
+          <div class="registro_categoria">
+              <p><?= $registro["cpf_cnpj_transportadora"] ?></p>
+              <p><?= $registro["nm_transportadora"] ?></p>
+              <p><?= $registro["cep_transportadora"] ?></p>
+              <p><?= $registro["cidade_transportadora"] ?></p>
+              <p><?= $registro["estado_transportadora"] ?></p>
+              <p><?= $registro["bairro_transportadora"] ?></p>
+              <p><?= $registro["logradouro_transportadora"] ?></p>
+              <p><?= $registro["nr_transportadora"] ?></p>
+              <div class="actions">
+                  <a href="edit.php?codigo=<?= $registro["id_transportadora"] ?>" title="Editar"><img src="../../img/edit.svg" alt="Editar"></a>
+                  <a href="delete.php?codigo=<?= $registro["id_transportadora"] ?>" title="Apagar"><img src="../../img/delete.svg" alt="Deletar"></a>
+              </div>
+          </div>
+      <?php
+      }
+      $resultado = null;
+      $banco = null;
+      ?>
     </div>
   </main>
   <?php include_once '../footer.php'; ?>
