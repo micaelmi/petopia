@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -34,7 +34,15 @@
 
     <main class="container box">
         <div class="form">
-            <h1>Cadastro de vendedor</h1>
+            <h1>Vendedores</h1>
+            <fieldset>
+                <legend>Cadastrar</legend>
+                <form class="insert" action="inset.php" method="POST">
+                    <input type="text" name="cpf_cnpj" id="cpf_cnpj" placeholder="CPF ou CNPJ">
+                    <input type="text" name="nome" id="nome" placeholder="Nome">
+                    <button type="submit">Salvar</button>
+                </form>
+            </fieldset>
             <fieldset>
                 <legend>
                     Vendedores cadastrados
@@ -43,9 +51,7 @@
                     <tr>
                         <th>CPF/CNPJ</th>
                         <th>Nome</th>
-                        <th>
-                            <span id="save">Salvar</span>
-                        </th>
+                        <th>Ações</th>
                     </tr>
                     <tr>
                         <td>399.640.332-10</td>
