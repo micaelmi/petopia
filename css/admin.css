@@ -165,13 +165,14 @@ tr td:first-child {
 }
 
 .registro_categoria {
-  width: 80%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   border: 1px solid var(--tertiary-color);
   padding: 1rem;
   border-radius: var(--radius);
+  margin: 0.5rem auto;
 }
 
 .show {
@@ -186,4 +187,64 @@ tr td:first-child {
 .actions {
   display: flex;
   gap: 3rem;
+}
+
+.transportadora {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.transportadora .fields {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.transportadora .fields div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fields div input {
+  width: 300px;
+}
+
+form.transportadora button {
+  width: 50%;
+}
+
+.transportadora_list {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.registro_transportadora {
+  width: 30%;
+  display: flex;
+  align-items: baseline;
+  justify-content: baseline;
+  gap: 0.25rem;
+  flex-direction: column;
+  border: 1px solid var(--tertiary-color);
+  padding: 1rem;
+  border-radius: var(--radius);
+  margin: 0.5rem auto;
+}
+
+.registro_transportadora div {
+  align-self: flex-end;
+}
+
+.registro_transportadora button {
+  all: initial;
+  cursor: pointer;
 }

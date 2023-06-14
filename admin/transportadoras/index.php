@@ -5,6 +5,13 @@ include_once '../../functions/database.php';
 
 $nome = filter_input(INPUT_GET, "nome");
 $cpf_cnpj = filter_input(INPUT_GET, "cpf_cnpj");
+$cep = filter_input(INPUT_GET, "cep");
+$estado = filter_input(INPUT_GET, "estado");
+$cidade = filter_input(INPUT_GET, "cidade");
+$bairro = filter_input(INPUT_GET, "bairro");
+$rua = filter_input(INPUT_GET, "rua");
+$numero = filter_input(INPUT_GET, "numero");
+
 
 $banco = connection();
 $sql = "SELECT * FROM transportadoras ORDER BY nm_transportadora";
@@ -27,6 +34,10 @@ $resultado = $banco->query($sql);
   <link rel="stylesheet" href="../../css/styles.css" />
   <link rel="stylesheet" href="../../css/admin.css" />
   <!-- JS -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <script defer src="../../js/masks.js"></script>
+  <script defer src="../../js/viacep.js"></script>
 </head>
 
 <body>
@@ -50,47 +61,43 @@ $resultado = $banco->query($sql);
       <h1>Cadastro de transportadora</h1>
       <fieldset>
           <legend>Cadastrar</legend>
-          <form action="insert.php" method="POST">
-              <input type="text" value="<?= $cpf_cnpj ?>" name="cpf_cnpj" id="cpf_cnpj" placeholder="CPF ou CNPJ">
-              <input type="text" value="<?= $nome ?>" name="nome" id="nome" placeholder="Nome">
-              <input type="text" value="<?= $cep ?>" name="cep" id="cep" placeholder="CEP">
-              <input type="text" value="<?= $estado ?>" name="estado" id="estado" placeholder="Estado">
-              <input type="text" value="<?= $cidade ?>" name="cidade" id="cidade" placeholder="Cidade">
-              <input type="text" value="<?= $bairro ?>" name="bairro" id="bairro" placeholder="Bairro">
-              <input type="text" value="<?= $rua ?>" name="rua" id="rua" placeholder="Rua">
-              <input type="text" value="<?= $numero ?>" name="numero" id="numero" placeholder="Número">
+          <form class="transportadora" action="insert.php" method="POST">
+              <div class="fields">
+                <div>
+                  <input type="text" value="<?= $cpf_cnpj ?>" name="cpf_cnpj" id="cpf_cnpj" placeholder="CPF ou CNPJ">
+                  <input type="text" value="<?= $nome ?>" name="nome" id="nome" placeholder="Nome">
+                  <input type="text" value="<?= $cep ?>" name="cep" id="cep" onblur="pesquisacep(this.value)" placeholder="CEP">
+                  <input type="text" value="<?= $estado ?>" name="estado" id="uf" placeholder="Estado">
+                </div>
+                <div>
+                  <input type="text" value="<?= $cidade ?>" name="cidade" id="cidade" placeholder="Cidade">
+                  <input type="text" value="<?= $bairro ?>" name="bairro" id="bairro" placeholder="Bairro">
+                  <input type="text" value="<?= $rua ?>" name="rua" id="rua" placeholder="Rua">
+                  <input type="text" value="<?= $numero ?>" name="numero" id="numero" placeholder="Número">
+                </div>
+              </div>
               <button type="submit">Salvar</button>
           </form>
       </fieldset>
       <h2>
         Transportadoras cadastradas
       </h2>
-      <div class="registro_categoria bold">
-          <p>CPF/CNPJ</p>
-          <p>Nome</p>
-          <p>CEP</p>
-          <p>Estado</p>
-          <p>Cidade</p>
-          <p>Bairro</p>
-          <p>Rua</p>
-          <p>Número</p>
-          <p>Ações</p>
-      </div>
+      <div class="transportadora_list">
       <?php
       while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
       ?>
-          <div class="registro_categoria">
-              <p><?= $registro["cpf_cnpj_transportadora"] ?></p>
-              <p><?= $registro["nm_transportadora"] ?></p>
-              <p><?= $registro["cep_transportadora"] ?></p>
-              <p><?= $registro["cidade_transportadora"] ?></p>
-              <p><?= $registro["estado_transportadora"] ?></p>
-              <p><?= $registro["bairro_transportadora"] ?></p>
-              <p><?= $registro["logradouro_transportadora"] ?></p>
-              <p><?= $registro["nr_transportadora"] ?></p>
+          <div class="registro_transportadora">
+              <p><strong>CPF/CNPJ:</strong> <?= $registro["cpf_cnpj_transportadora"] ?></p>
+              <p><strong>Nome:</strong> <?= $registro["nm_transportadora"] ?></p>
+              <p><strong>CEP:</strong> <?= $registro["cep_transportadora"] ?></p>
+              <p><strong>Estado:</strong> <?= $registro["estado_transportadora"] ?></p>
+              <p><strong>Cidade:</strong> <?= $registro["cidade_transportadora"] ?></p>
+              <p><strong>Bairro:</strong> <?= $registro["bairro_transportadora"] ?></p>
+              <p><strong>Rua:</strong> <?= $registro["logradouro_transportadora"] ?></p>
+              <p><strong>Número:</strong> <?= $registro["nr_transportadora"] ?></p>
               <div class="actions">
-                  <a href="edit.php?codigo=<?= $registro["id_transportadora"] ?>" title="Editar"><img src="../../img/edit.svg" alt="Editar"></a>
-                  <a href="delete.php?codigo=<?= $registro["id_transportadora"] ?>" title="Apagar"><img src="../../img/delete.svg" alt="Deletar"></a>
+                  <button href="edit.php?codigo=<?= $registro["id_transportadora"] ?>" title="Editar"><img src="../../img/edit.svg" alt="Editar"></button>
+                  <button href="delete.php?codigo=<?= $registro["id_transportadora"] ?>" title="Apagar"><img src="../../img/delete.svg" alt="Deletar"></button>
               </div>
           </div>
       <?php
