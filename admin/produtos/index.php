@@ -5,11 +5,20 @@
   include_once '../../functions/database.php';
   include_once '../../functions/loadFiles.php';
 
+  $nome = filter_input(INPUT_GET, 'nome');
+  $descricao = filter_input(INPUT_GET, 'descricao');
+  $valor = filter_input(INPUT_GET, 'valor');
+  $peso = filter_input(INPUT_GET, 'peso');
+  $dimensoes = filter_input(INPUT_GET, 'dimensoes');
+  $categoria = filter_input(INPUT_GET, 'categoria');
+  $medida = filter_input(INPUT_GET, 'medida');
+  $quantidade = filter_input(INPUT_GET, 'quantidade');
+
   $banco = connection();
   $sql_categoria = "SELECT id_categoria, ds_categoria FROM categorias ORDER BY ds_categoria";
-  $categoria = $banco->query($sql_categoria);
+  $r_categoria = $banco->query($sql_categoria);
   $sql_medida = "SELECT id_unidade_medida, ds_unidade_medida FROM unidades_medida ORDER BY ds_unidade_medida";
-  $medida = $banco->query($sql_medida);
+  $r_medida = $banco->query($sql_medida);
 ?>
 
 <html lang="pt-BR">
@@ -78,24 +87,24 @@
               <div class="linha"></div>
               <div class="inicio_form">
                 <div>
-                  <input required name="nome" type="text" placeholder="Nome" />
+                  <input required name="nome" value="<?=$nome?>" type="text" placeholder="Nome" />
                   <select class="slct" name="categoria">
-                    <?=selectList($categoria, ["id_categoria", "ds_categoria"], null, "Selecione uma categoria")?>
+                    <?=selectList($r_categoria, ["id_categoria", "ds_categoria"], $categoria, "Selecione uma categoria")?>
                   </select>
                   <select class="slct" name="medida">
-                    <?=selectList($medida, ["id_unidade_medida", "ds_unidade_medida"], null, "Selecione uma unidade de medida")?>
+                    <?=selectList($r_medida, ["id_unidade_medida", "ds_unidade_medida"], $medida, "Selecione uma unidade de medida")?>
                   </select>
                 </div>
-                <textarea required name="descricao" type="text" placeholder="Descreva o produto..." rows="5" style="resize: none"></textarea>
+                <textarea required name="descricao" type="text" placeholder="Descreva o produto..." rows="5" style="resize: none"><?=$descricao?></textarea>
               </div>
               <div class="final_form">
                 <div>
-                  <input required name="dimensao" type="text" placeholder="Dimensões do produto" />
-                  <input required name="peso" type="number" placeholder="Peso unitário" />
+                  <input required name="dimensao" value="<?=$valor?>" type="text" placeholder="Dimensões do produto (em cm)" />
+                  <input required name="peso" value="<?=$peso?>" type="number" placeholder="Peso unitário (em Kg)" />
                 </div>
                 <div>
-                  <input required name="valor" type="number" placeholder="Valor unitário do produto" />
-                  <input required name="quantidade" type="number" placeholder="Quantidade" />
+                  <input required name="valor" value="<?=$valor?>" type="number" placeholder="Valor unitário do produto" />
+                  <input required name="quantidade" value="<?=$quantidade?>" type="number" placeholder="Quantidade" />
                 </div>
               </div>
               <div class="linha"></div>
