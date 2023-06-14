@@ -29,7 +29,7 @@ $erro = filter_input(INPUT_GET, 'erro');
   <main>
     <img class="bird" src="./img/login-bird.png" alt="Passarinho" />
 
-    <form action="./modules/clientes/backend/logar.php" method="POST">
+    <form action="./clientes/logar.php" method="POST">
       <img src="./img/logo.svg" alt="Logo Petopia" />
       <div class="erro">
         <span id="erro" name="erro"><?= $erro ?></span>

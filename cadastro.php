@@ -40,7 +40,7 @@ $erro = filter_input(INPUT_GET, 'erro');
 </head>
 
 <body>
-  <form method="POST" action="./modules/clientes/backend/cadastrar.php">
+  <form method="POST" action="./clientes/cadastrar.php">
     <img src="./img/logo.svg" alt="Logo Petopia" />
     <h1>Cadastre-se!</h1>
     <div class="erro">

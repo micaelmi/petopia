@@ -5,6 +5,13 @@ if (isset($_COOKIE["login"])) {
 } else {
   header("location:./welcome.php");
 }
+
+include_once './functions/database.php';
+
+
+$banco = connection();
+$sql = "SELECT * FROM produtos";
+$resultado = $banco->query($sql);
 ?>
 <html lang="pt-BR">
 
@@ -63,36 +70,21 @@ if (isset($_COOKIE["login"])) {
     <h1>Bem-vindo(a) à Petopia!</h1>
     <h2>Encontre tudo para seu amigo pet bem aqui!</h2>
     <div class="products">
+    <?php
+      while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
+      ?>
       <div class="card">
-        <img src="./img/pets-5.jpg" alt="Passarinho" />
-        <h3>R$120,00</h3>
-        <h4>Passarinho</h4>
-        <p>
-          descrição Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Fugiat a esse hic et, repellendus.
-        </p>
+        <img src="./img/produtos/<?=$registro['nm_produto']?><?=$registro['vl_produto']?>1.png" alt="<?=$registro['nm_produto']?>" />
+        <h3>R$<?=$registro['vl_produto']?></h3>
+        <h4><?=$registro['nm_produto']?></h4>
+        <p><?=$registro['ds_produto']?></p>
         <button>Detalhes</button>
       </div>
-      <div class="card">
-        <img src="./img/pets-5.jpg" alt="Passarinho" />
-        <h3>R$120,00</h3>
-        <h4>Passarinho</h4>
-        <p>
-          descrição Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Fugiat a esse hic et, repellendus.
-        </p>
-        <button>Detalhes</button>
-      </div>
-      <div class="card">
-        <img src="./img/pets-5.jpg" alt="Passarinho" />
-        <h3>R$120,00</h3>
-        <h4>Passarinho</h4>
-        <p>
-          descrição Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Fugiat a esse hic et, repellendus.
-        </p>
-        <button>Detalhes</button>
-      </div>
+      <?php
+      }
+      $resultado = null;
+      $banco = null;
+      ?>
     </div>
   </main>
   <?php include_once 'footer.php'; ?>

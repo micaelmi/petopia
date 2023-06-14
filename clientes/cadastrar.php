@@ -11,7 +11,7 @@ $rua = filter_input(INPUT_POST, 'rua', FILTER_SANITIZE_SPECIAL_CHARS);
 $numero = filter_input(INPUT_POST, 'numero', FILTER_SANITIZE_SPECIAL_CHARS);
 $senha = filter_input(INPUT_POST, 'senha');
 
-include_once '../../../functions/database.php';
+include_once '../functions/database.php';
 
 $bd = connection();
 $sql = "
@@ -40,11 +40,11 @@ try {
   $params .= "&numero=$numero";
 
   $bd = null;
-  header("location:../../../cadastro.php?$params");
+  header("location:../cadastro.php?$params");
   die();
 }
 
 
 $bd = null;
 
-header("location:../../../index.php");
+header("location:../index.php");
