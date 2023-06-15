@@ -74,7 +74,11 @@ header a:hover {
 }
 
 header .links a {
-  padding-inline: 0.75rem;
+  padding-inline: 1.5rem;
+}
+
+.cart img {
+  margin-bottom: -0.25rem;
 }
 
 footer {

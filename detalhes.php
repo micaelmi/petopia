@@ -70,13 +70,13 @@ $resultado_imagens = $banco->query($sql_imagens);
       </div>
     </div>
     <div class="info">
+      <p><strong><?= $registro['ds_categoria'] ?></strong> </p>
       <h1><?= $registro['nm_produto'] ?></h1>
       <h2>R$<?= $registro['vl_produto'] ?></h2>
       <p><?= $registro['ds_produto'] ?></p>
       <p><strong>Dimensões:</strong> <?= $registro['dimensoes_produto'] ?></p>
       <p><strong>Peso:</strong> <?= $registro['peso_produto'] ?>kg</p>
       <p><strong>Quantidade disponível em estoque: </strong><?= $registro['qt_estoque'] ?></p>
-      <p><strong>Categoria:</strong> <?= $registro['ds_categoria'] ?></p>
       <p><strong>Unidade de medida:</strong> <?= $registro['ds_unidade_medida'] ?></p>
       <button>Adicionar ao carrinho</button>
     </div>
