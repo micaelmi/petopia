@@ -14,7 +14,15 @@ main {
   gap: 2rem;
   padding: 2rem;
 }
-
-.imgs img {
+.imgs {
+  width: 50%;
   border-radius: var(--radius);
+}
+
+.info {
+  width: 50%;
+}
+
+.info p {
+  margin-top: 0.5rem;
 }

@@ -69,15 +69,15 @@ $medida = $banco->query($sql_medida);
             <legend>
               Adicione até 5 imagens do produto
             </legend>
-            <input type="file" id="img1" name="img1" accept="image/png, image/jpeg" required />
+            <input type="file" id="img1" name="img1" accept="image" required />
 
-            <input type="file" id="img2" name="img2" accept="image/png, image/jpeg" />
+            <input type="file" id="img2" name="img2" accept="image" />
 
-            <input type="file" id="img3" name="img3" accept="image/png, image/jpeg" />
+            <input type="file" id="img3" name="img3" accept="image" />
 
-            <input type="file" id="img4" name="img4" accept="image/png, image/jpeg" />
+            <input type="file" id="img4" name="img4" accept="image" />
 
-            <input type="file" id="img5" name="img5" accept="image/png, image/jpeg" />
+            <input type="file" id="img5" name="img5" accept="image" />
           </fieldset>
         </div>
         <div class="linha"></div>

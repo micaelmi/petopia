@@ -45,20 +45,76 @@ try {
   die();
 }
 
+$sql = "SELECT MAX(id_produto) as id FROM produtos";
+$resultado = $bd->query($sql);
+$registro = $resultado->fetch(PDO::FETCH_ASSOC);
+$id = $registro["id"];
+$cod = uniqid();
+// echo $cod;
+
 if (loadFile($arquivo1)) {
-  moveFile($arquivo1, "../../img/produtos/" . $nome . $valor . "1.png");
+  moveFile($arquivo1, "../../img/produtos/" . $nome . $cod . "-1.png");
+  $name = $nome . $cod . "-1.png";
+  $sql = "INSERT INTO imagens (id_imagem, nm_imagem, id_produto) VALUES (NULL, '$name', '$id')";
+  $bd->beginTransaction();
+  $linhas = $bd->exec($sql);
+  if ($linhas == 1) {
+    $bd->commit();
+  } else {
+    $bd->rollBack();
+  }
 }
 if (loadFile($arquivo2)) {
-  moveFile($arquivo2, "../../img/produtos/" . $nome . $valor . "2.png");
+  moveFile($arquivo2, "../../img/produtos/" . $nome . $cod . "-2.png");
+  $name = $nome . $cod . "-2.png";
+  $sql = "INSERT INTO imagens (id_imagem, nm_imagem, id_produto) 
+          VALUES (NULL, '$name', '$id')";
+  $bd->beginTransaction();
+  $linhas = $bd->exec($sql);
+  if ($linhas == 1) {
+    $bd->commit();
+  } else {
+    $bd->rollBack();
+  }
 }
 if (loadFile($arquivo3)) {
-  moveFile($arquivo3, "../../img/produtos/" . $nome . $valor . "3.png");
+  moveFile($arquivo3, "../../img/produtos/" . $nome . $cod . "-3.png");
+  $name = $nome . $cod . "-3.png";
+  $sql = "INSERT INTO imagens (id_imagem, nm_imagem, id_produto) 
+          VALUES (NULL, '$name', '$id')";
+  $bd->beginTransaction();
+  $linhas = $bd->exec($sql);
+  if ($linhas == 1) {
+    $bd->commit();
+  } else {
+    $bd->rollBack();
+  }
 }
 if (loadFile($arquivo4)) {
-  moveFile($arquivo4, "../../img/produtos/" . $nome . $valor . "4.png");
+  moveFile($arquivo4, "../../img/produtos/" . $nome . $cod . "-4.png");
+  $name = $nome . $cod . "-4.png";
+  $sql = "INSERT INTO imagens (id_imagem, nm_imagem, id_produto) 
+          VALUES (NULL, '$name', '$id')";
+  $bd->beginTransaction();
+  $linhas = $bd->exec($sql);
+  if ($linhas == 1) {
+    $bd->commit();
+  } else {
+    $bd->rollBack();
+  }
 }
 if (loadFile($arquivo5)) {
-  moveFile($arquivo5, "../../img/produtos/" . $nome . $valor . "5.png");
+  moveFile($arquivo5, "../../img/produtos/" . $nome . $cod . "-5.png");
+  $name = $nome . $cod . "-5.png";
+  $sql = "INSERT INTO imagens (id_imagem, nm_imagem, id_produto) 
+          VALUES (NULL, '$name', '$id')";
+  $bd->beginTransaction();
+  $linhas = $bd->exec($sql);
+  if ($linhas == 1) {
+    $bd->commit();
+  } else {
+    $bd->rollBack();
+  }
 }
 
 

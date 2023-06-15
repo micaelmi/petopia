@@ -10,7 +10,7 @@ include_once './functions/database.php';
 
 
 $banco = connection();
-$sql = "SELECT * FROM produtos";
+$sql = "SELECT p.id_produto, p.nm_produto, p.ds_produto, p.vl_produto, i.nm_imagem FROM produtos p INNER JOIN imagens i ON i.id_produto = p.id_produto WHERE i.nm_imagem LIKE '%-1.PNG' AND p.qt_estoque > 0";
 $resultado = $banco->query($sql);
 ?>
 <html lang="pt-BR">
@@ -74,11 +74,11 @@ $resultado = $banco->query($sql);
       while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
       ?>
       <div class="card">
-        <img src="./img/produtos/<?=$registro['nm_produto']?><?=$registro['vl_produto']?>1.png" alt="<?=$registro['nm_produto']?>" />
+        <img src="./img/produtos/<?=$registro['nm_imagem']?>" alt="<?=$registro['nm_produto']?>" />
         <h3>R$<?=$registro['vl_produto']?></h3>
         <h4><?=$registro['nm_produto']?></h4>
         <p><?=$registro['ds_produto']?></p>
-        <button>Detalhes</button>
+        <a class="detalhes" href="./detalhes.php?id=<?=$registro['id_produto']?>">Detalhes</a>
       </div>
       <?php
       }

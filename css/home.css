@@ -44,3 +44,11 @@
   border-radius: var(--radius);
   height: 200px;
 }
+
+.detalhes {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
