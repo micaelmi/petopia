@@ -23,6 +23,22 @@ try{
     $linhas = $bd->exec($sql);
     if ($linhas == 1){
         $bd->commit();
+
+        if (loadFile($arquivo1)){
+            moveFile($arquivo1,"../../img/produtos/".$nome.$dimensoes."1.png");
+        }
+        if (loadFile($arquivo2)){
+            moveFile($arquivo2,"../../img/produtos/".$nome.$dimensoes."2.png");
+        }
+        if (loadFile($arquivo3)){
+            moveFile($arquivo3,"../../img/produtos/".$nome.$dimensoes."3.png");
+        }
+        if (loadFile($arquivo4)){
+            moveFile($arquivo4,"../../img/produtos/".$nome.$dimensoes."4.png");
+        }
+        if (loadFile($arquivo5)){
+            moveFile($arquivo5,"../../img/produtos/".$nome.$dimensoes."5.png");
+        }
     }
     else {
         $bd->rollBack();
@@ -45,23 +61,6 @@ try{
     header("location:index.php?$params");
     die();
 }
-
-if (loadFile($arquivo1)){
-    moveFile($arquivo1,"../../img/produtos/".$nome.$valor."1.png");
-}
-if (loadFile($arquivo2)){
-    moveFile($arquivo2,"../../img/produtos/".$nome.$valor."2.png");
-}
-if (loadFile($arquivo3)){
-    moveFile($arquivo3,"../../img/produtos/".$nome.$valor."3.png");
-}
-if (loadFile($arquivo4)){
-    moveFile($arquivo4,"../../img/produtos/".$nome.$valor."4.png");
-}
-if (loadFile($arquivo5)){
-    moveFile($arquivo5,"../../img/produtos/".$nome.$valor."5.png");
-}
-
 
 $bd = null;
 

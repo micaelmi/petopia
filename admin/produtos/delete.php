@@ -5,13 +5,7 @@ include_once '../../functions/database.php';
 $bd = connection();
 $codigo = filter_input(INPUT_GET, 'codigo');
 
-$ptcod = filter_input(INPUT_GET, 'ptcod');
-
-if($ptcod == 1) {
-    $sql = "DELETE FROM categorias WHERE id_categoria = '$codigo' ";
-} else {
-    $sql = "DELETE FROM unidades_medida WHERE id_unidade_medida = '$codigo' ";
-}
+    $sql = "DELETE FROM produtos WHERE id_produto = '$codigo' ";
 
 try {
     $bd->beginTransaction();
@@ -24,12 +18,12 @@ try {
     }
 
     $bd = null;
-    header("location:index.php");
+    header("location:cadastrados.php");
 } catch (Exception $exc) {
     $parametros = "";
     $parametros .= dbError($exc);
     $parametros .= "&codigo=$codigo";
 
-    header("location:index.php?$parametros");
+    header("location:cadastrados.php?$parametros");
     die();
 }

@@ -16,6 +16,10 @@
   <link rel="stylesheet" href="../../css/styles.css" />
   <link rel="stylesheet" href="../../css/admin.css" />
   <!-- JS -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <script defer src="../../js/masks.js"></script>
+  <script defer src="../../js/viacep.js"></script>
 </head>
 
 <body>
@@ -37,59 +41,108 @@
   <main class="container box">
     <div class="form">
       <h1>Cadastro de transportadora</h1>
+      <fieldset style="margin-top: 1rem">
+          <legend>Cadastrar</legend>
+          <form class="transportadora" action="insert.php" method="POST">
+              <div class="fields">
+                <div>
+                  <input type="text" name="cpf_cnpj" id="cpf_cnpj" placeholder="CPF ou CNPJ">
+                  <input type="text" name="nome" id="nome" placeholder="Nome">
+                  <input type="text" name="cep" id="cep" onblur="pesquisacep(this.value)" placeholder="CEP">
+                  <input type="text" name="estado" id="uf" placeholder="Estado">
+                </div>
+                <div>
+                  <input type="text" name="cidade" id="cidade" placeholder="Cidade">
+                  <input type="text" name="bairro" id="bairro" placeholder="Bairro">
+                  <input type="text" name="rua" id="rua" placeholder="Rua">
+                  <input type="text" name="numero" id="numero" placeholder="Número">
+                </div>
+              </div>
+              <button type="submit">Salvar</button>
+          </form>
+      </fieldset>
       <h2>
         Transportadoras cadastradas
       </h2>
-      <table>
-        <tr>
-          <th>CPF/CNPJ</th>
-          <th>Nome</th>
-          <th>CEP</th>
-          <th>Estado</th>
-          <th>Cidade</th>
-          <th>Bairro</th>
-          <th>Rua</th>
-          <th>Número</th>
-          <th>
-            <span id="save">Salvar</span>
-          </th>
-        </tr>
-        <tr>
-          <td>399.678.332/0001</td>
-          <td>Piracaiao Transportes LTDA</td>
-          <td>12970-000</td>
-          <td>SP</td>
-          <td>Piracaia</td>
-          <td>Centro</td>
-          <th>Rua Alvorada</th>
-          <th>45</th>
-          <td>
-            <div class="actions">
-              <button title="Editar"><img src="../../img/edit.svg" alt="Editar"></button>
-              <button title="Apagar"><img src="../../img/delete.svg" alt="Deletar"></button>
+      <?php
+        include_once '../../functions/database.php';
+        
+        $banco = connection();
+        $sql = "SELECT * FROM transportadoras ORDER BY nm_transportadora";
+        $resultado = $banco->query($sql);
+
+        if($resultado->rowCount() == 0) {
+      ?>
+          <p class="listagem_vazia">Nenhuma transportadora cadastrada</p>
+      <?php
+        } else {
+      ?>
+        <div class="transportadora_list">
+      <?php
+            while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
+      ?>
+          <div class="registro_transportadora">
+              <p><strong>CPF/CNPJ:</strong> <?= $registro["cpf_cnpj_transportadora"] ?></p>
+              <p><strong>Nome:</strong> <?= $registro["nm_transportadora"] ?></p>
+              <p><strong>CEP:</strong> <?= $registro["cep_transportadora"] ?></p>
+              <p><strong>Estado:</strong> <?= $registro["estado_transportadora"] ?></p>
+              <p><strong>Cidade:</strong> <?= $registro["cidade_transportadora"] ?></p>
+              <p><strong>Bairro:</strong> <?= $registro["bairro_transportadora"] ?></p>
+              <p><strong>Rua:</strong> <?= $registro["logradouro_transportadora"] ?></p>
+              <p><strong>Número:</strong> <?= $registro["nr_transportadora"] ?></p>
+              <div class="actions">
+                  <button
+                    onclick="openModal(<?=$registro['id_transportadora']?>)"
+                    title="Editar"
+                  >
+                    <img src="../../img/edit.svg" alt="Editar">
+                  </button>
+                  <button
+                    onclick="deleteData('delete.php?codigo=<?= $registro['id_transportadora'] ?>')"
+                    title="Apagar"
+                  >
+                    <img src="../../img/delete.svg" alt="Deletar">
+                  </button>
+              </div>
+          </div>
+          <div class="modal_transportadora" id="<?=$registro['id_transportadora']?>">
+            <div class="total_content">
+              <button class="button_cancel" onclick="closeModal(<?=$registro['id_transportadora']?>)">X | Cancelar</button>
+              <div class="content">
+                <form class="insert" action="edit.php?codigo=<?=$registro['id_transportadora']?>" method="POST">
+                  <div class="input_edit_t">
+                    <div class="fields">
+                      <div>
+                        <input type="text" value="<?= $registro["cpf_cnpj_transportadora"] ?>" name="cpf_cnpj" id="cpf_cnpj" placeholder="CPF ou CNPJ">
+                        <input type="text" value="<?= $registro["nm_transportadora"] ?>" name="nome" id="nome" placeholder="Nome">
+                        <input type="text" value="<?= $registro["cep_transportadora"] ?>" name="cep" id="cep" onblur="pesquisacep(this.value)" placeholder="CEP">
+                        <input type="text" value="<?= $registro["estado_transportadora"] ?>" name="estado" id="uf" placeholder="Estado">
+                      </div>
+                      <div>
+                        <input type="text" value="<?= $registro["cidade_transportadora"] ?>" name="cidade" id="cidade" placeholder="Cidade">
+                        <input type="text" value="<?= $registro["bairro_transportadora"] ?>" name="bairro" id="bairro" placeholder="Bairro">
+                        <input type="text" value="<?= $registro["logradouro_transportadora"] ?>" name="rua" id="rua" placeholder="Rua">
+                        <input type="text" value="<?= $registro["nr_transportadora"] ?>" name="numero" id="numero" placeholder="Número">
+                      </div>
+                    </div>
+                    <button type="submit">Salvar edição</button>
+                  </div>
+                </form>
+              </div>
             </div>
-          </td>
-        </tr>
-        <tr>
-          <td>240.654.323-01</td>
-          <td>Express Transportes rápidos BR</td>
-          <td>04959-030</td>
-          <td>SP</td>
-          <td>São Caetano do Sul</td>
-          <td>Formigueiros</td>
-          <th>Rua Presidente Armando III</th>
-          <th>4532</th>
-          <td>
-            <div class="actions">
-              <button title="Editar"><img src="../../img/edit.svg" alt="Editar"></button>
-              <button title="Apagar"><img src="../../img/delete.svg" alt="Deletar"></button>
-            </div>
-          </td>
-        </tr>
-      </table>
+          </div>
+      <?php
+      }
+    }
+      $resultado = null;
+      $banco = null;
+      ?>
     </div>
   </main>
   <?php include_once '../footer.php'; ?>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../../js/alerts.js"></script>
+  <script src="../../js/modal.js"></script>
 </body>
 
 </html>

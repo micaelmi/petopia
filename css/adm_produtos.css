@@ -11,7 +11,7 @@
 }
 
 main {
-    height: 57rem;
+    height: 65rem;
 }
 
 form {
@@ -28,7 +28,12 @@ h1 {
 .imgs_produto {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 2rem;
+}
+
+.imgs_produto label {
+    cursor: pointer;
 }
 
 .add_img {
@@ -117,5 +122,8 @@ textarea {
 
 button {
     width: 400px;
+}
 
+.ver_produtos {
+    align-self: center;
 }

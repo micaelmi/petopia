@@ -40,3 +40,13 @@ function loadImage($name)
 
     return $file;
 }
+
+function loadCadastrado($name) {
+    $url_img = "..\..\img\produtos\default_cadastrado.png";
+
+    if (file_exists($name)) {
+        return $name;
+    } else {
+        return $url_img;
+    }
+}

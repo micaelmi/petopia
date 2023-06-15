@@ -21,7 +21,7 @@ try {
     header("location:index.php");
 } catch (Exception $exc) {
     $parametros = "";
-    $parametros .= bdErro($exc);
+    $parametros .= dbError($exc);
     $parametros .= "&codigo=$codigo";
 
     header("location:index.php?$parametros");

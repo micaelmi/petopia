@@ -110,9 +110,18 @@
               <div class="linha"></div>
               <button type="submit">Cadastrar produto</button>
             </form>
+            <div class="linha"></div>
+            <a href="cadastrados.php" class="ver_produtos">
+              <button>
+                Visualizar produtos cadastrados
+              </button>
+            </a>
         </div>
   </main>
   <?php include_once '../footer.php'; ?>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../../js/alerts.js"></script>
+  <script src="../../js/modal.js"></script>
   <script src="../../js/showImage.js"></script>
   <script>
     let picture = document.getElementById("picture")
