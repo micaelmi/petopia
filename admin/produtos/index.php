@@ -5,20 +5,20 @@ include_once '../../functions/views.php';
 include_once '../../functions/database.php';
 include_once '../../functions/loadFiles.php';
 
-$nome = filter_input(INPUT_GET, "nome");
-$descricao = filter_input(INPUT_GET, "descricao");
-$valor = filter_input(INPUT_GET, "valor");
-$quantidade = filter_input(INPUT_GET, "quantidade");
-$dimensoes = filter_input(INPUT_GET, "dimensoes");
-$peso = filter_input(INPUT_GET, "peso");
-$input_medida = filter_input(INPUT_GET, "medida");
-$input_categoria = filter_input(INPUT_GET, "categoria");
+$nome = filter_input(INPUT_GET, 'nome');
+$descricao = filter_input(INPUT_GET, 'descricao');
+$valor = filter_input(INPUT_GET, 'valor');
+$peso = filter_input(INPUT_GET, 'peso');
+$dimensoes = filter_input(INPUT_GET, 'dimensoes');
+$categoria = filter_input(INPUT_GET, 'categoria');
+$medida = filter_input(INPUT_GET, 'medida');
+$quantidade = filter_input(INPUT_GET, 'quantidade');
 
 $banco = connection();
 $sql_categoria = "SELECT id_categoria, ds_categoria FROM categorias ORDER BY ds_categoria";
-$categoria = $banco->query($sql_categoria);
+$r_categoria = $banco->query($sql_categoria);
 $sql_medida = "SELECT id_unidade_medida, ds_unidade_medida FROM unidades_medida ORDER BY ds_unidade_medida";
-$medida = $banco->query($sql_medida);
+$r_medida = $banco->query($sql_medida);
 ?>
 
 <html lang="pt-BR">
@@ -37,7 +37,7 @@ $medida = $banco->query($sql_medida);
   <!-- CSS -->
   <link rel="stylesheet" href="../../css/styles.css" />
   <link rel="stylesheet" href="../../css/admin.css" />
-  <link rel="stylesheet" href="../../css/produtos.css" />
+  <link rel="stylesheet" href="../../css/adm_produtos.css" />
   <!-- JS -->
 </head>
 
@@ -83,32 +83,41 @@ $medida = $banco->query($sql_medida);
         <div class="linha"></div>
         <div class="inicio_form">
           <div>
-            <input required name="nome" type="text" placeholder="Nome" value="<?= $nome ?>" />
+            <input required name="nome" value="<?= $nome ?>" type="text" placeholder="Nome" />
             <select class="slct" name="categoria">
-              <?= selectList($categoria, ["id_categoria", "ds_categoria"], $input_categoria, "Selecione uma categoria") ?>
+              <?= selectList($r_categoria, ["id_categoria", "ds_categoria"], $categoria, "Selecione uma categoria") ?>
             </select>
             <select class="slct" name="medida">
-              <?= selectList($medida, ["id_unidade_medida", "ds_unidade_medida"], $input_medida, "Selecione uma unidade de medida") ?>
+              <?= selectList($r_medida, ["id_unidade_medida", "ds_unidade_medida"], $medida, "Selecione uma unidade de medida") ?>
             </select>
           </div>
-          <textarea required name="descricao" placeholder="Descreva o produto..." rows="5" style="resize: none"><?= $descricao ?></textarea>
+          <textarea required name="descricao" type="text" placeholder="Descreva o produto..." rows="5" style="resize: none"><?= $descricao ?></textarea>
         </div>
         <div class="final_form">
           <div>
-            <input required name="dimensoes" type="text" placeholder="Dimensões do produto" value="<?= $dimensoes ?>" />
-            <input required name="peso" type="text" placeholder="Peso unitário" value="<?= $peso ?>" />
+            <input required name="dimensao" value="<?= $valor ?>" type="text" placeholder="Dimensões do produto (em cm)" />
+            <input required name="peso" value="<?= $peso ?>" type="number" placeholder="Peso unitário (em Kg)" />
           </div>
           <div>
-            <input required name="valor" type="text" placeholder="Valor unitário do produto" value="<?= $valor ?>" />
-            <input required name="quantidade" type="text" placeholder="Quantidade" value="<?= $quantidade ?>" />
+            <input required name="valor" value="<?= $valor ?>" type="number" placeholder="Valor unitário do produto" />
+            <input required name="quantidade" value="<?= $quantidade ?>" type="number" placeholder="Quantidade" />
           </div>
         </div>
         <div class="linha"></div>
         <button type="submit">Cadastrar produto</button>
       </form>
+      <div class="linha"></div>
+      <a href="cadastrados.php" class="ver_produtos">
+        <button>
+          Visualizar produtos cadastrados
+        </button>
+      </a>
     </div>
   </main>
   <?php include_once '../footer.php'; ?>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../../js/alerts.js"></script>
+  <script src="../../js/modal.js"></script>
   <script src="../../js/showImage.js"></script>
   <script>
     let picture = document.getElementById("picture")

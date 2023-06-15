@@ -42,6 +42,7 @@ $resultado_imagens = $banco->query($sql_imagens);
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Righteous&display=swap" rel="stylesheet" />
   <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon" />
   <!-- CSS -->
+  <link rel="stylesheet" href="./css/iziToast.min.css" />
   <link rel="stylesheet" href="./css/styles.css" />
   <link rel="stylesheet" href="./css/detalhes.css" />
   <link rel="stylesheet" href="./css/menu.css" />
@@ -49,6 +50,9 @@ $resultado_imagens = $banco->query($sql_imagens);
   <script defer src="https://cdn.jsdelivr.net/npm/keen-slider@6.8.5/keen-slider.min.js"></script>
   <script defer src="./js/slider.js"></script>
   <script defer src="./js/menu.js"></script>
+  <script defer src="./js/iziToast.min.js"></script>
+  <script defer src="./js/localStorage.js"></script>
+  <script defer src="./js/detalhes.js"></script>
 </head>
 
 <body>
@@ -70,7 +74,8 @@ $resultado_imagens = $banco->query($sql_imagens);
       </div>
     </div>
     <div class="info">
-      <p><strong><?= $registro['ds_categoria'] ?></strong> </p>
+      <p style="display: none;">cod - <span id="id_produto"><?= $id ?></span></p>
+      <p><strong><?= $registro['ds_categoria'] ?></strong></p>
       <h1><?= $registro['nm_produto'] ?></h1>
       <h2>R$<?= $registro['vl_produto'] ?></h2>
       <p><?= $registro['ds_produto'] ?></p>
@@ -78,7 +83,13 @@ $resultado_imagens = $banco->query($sql_imagens);
       <p><strong>Peso:</strong> <?= $registro['peso_produto'] ?>kg</p>
       <p><strong>Quantidade disponível em estoque: </strong><?= $registro['qt_estoque'] ?></p>
       <p><strong>Unidade de medida:</strong> <?= $registro['ds_unidade_medida'] ?></p>
-      <button>Adicionar ao carrinho</button>
+      <div class="actions">
+        <button onclick="
+        addToCart(<?= $id ?>, <?= $registro['nm_produto'] ?>, <?= $registro['vl_produto'] ?>, <?= $registro['qt_estoque'] ?>)"
+        >Adicionar ao carrinho</button>
+        <button class="orange"><a href="carrinho.php" style="color: #fff">Ver carrinho</a></button>
+      </div>
+      <p><strong>Quantidade adicionada:</strong> <span id="qt"></span> </p>
     </div>
   </main>
   <?php include_once 'footer.php'; ?>

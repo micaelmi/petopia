@@ -24,14 +24,17 @@ if (isset($_COOKIE["login"])) {
   <link rel="stylesheet" href="./css/carrinho.css" />
   <link rel="stylesheet" href="./css/menu.css" />
   <!-- JS -->
+  <script defer src="./js/iziToast.min.js"></script>
+  <script defer src="./js/localStorage.js"></script>
   <script defer src="./js/menu.js"></script>
+  <script defer src="./js/cart.js"></script>
 </head>
 
 <body>
   <?php include_once 'header.php'; ?>
   <main class="container">
     <h1>Meu carrinho</h1>
-    <div class="carrinho">
+    <div id="show-cart" class="carrinho">
       <table>
         <thead>
           <tr>
@@ -43,7 +46,6 @@ if (isset($_COOKIE["login"])) {
         </thead>
         <tbody id="items-cart"></tbody>
       </table>
-    </div>
     <div class="checkout">
       <div class="total">
         <p>Total: R$<span id="amount">000.00</span></p>

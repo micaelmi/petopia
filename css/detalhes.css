@@ -26,3 +26,8 @@ main {
 .info p {
   margin-top: 0.5rem;
 }
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}

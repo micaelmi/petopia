@@ -62,6 +62,10 @@ tr th span {
   gap: 0.25rem;
 }
 
+.quantity button {
+  all: initial;
+}
+
 .checkout {
   display: flex;
   justify-content: flex-end;
