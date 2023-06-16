@@ -85,8 +85,7 @@ $resultado_imagens = $banco->query($sql_imagens);
       <p><strong>Unidade de medida:</strong> <?= $registro['ds_unidade_medida'] ?></p>
       <div class="actions">
         <button onclick="
-        addToCart(<?= $id ?>, <?= $registro['nm_produto'] ?>, <?= $registro['vl_produto'] ?>, <?= $registro['qt_estoque'] ?>)"
-        >Adicionar ao carrinho</button>
+        addToCart(<?= $id ?>, '<?= $registro['nm_produto'] ?>', <?= $registro['vl_produto'] ?>, <?= $registro['qt_estoque'] ?>)">Adicionar ao carrinho</button>
         <button class="orange"><a href="carrinho.php" style="color: #fff">Ver carrinho</a></button>
       </div>
       <p><strong>Quantidade adicionada:</strong> <span id="qt"></span> </p>

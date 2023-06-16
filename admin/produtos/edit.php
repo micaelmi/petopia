@@ -57,16 +57,17 @@ try {
   die();
 }
 
-$sql = "SELECT MAX(id_produto) as id FROM produtos";
-$resultado = $bd->query($sql);
-$registro = $resultado->fetch(PDO::FETCH_ASSOC);
-$id = $registro["id"];
+$sql = "DELETE FROM imagens WHERE id_produto = '$codigo'";
+$bd->beginTransaction();
+$linhas = $bd->exec($sql);
+$bd->commit();
+
 $cod = uniqid();
 
 if (loadFile($arquivo1)) {
   moveFile($arquivo1, "../../img/produtos/" . $nome . $cod . "-1.png");
   $name = $nome . $cod . "-1.png";
-  $sql = "UPDATE imagens SET nm_imagem = '$name' WHERE id_produto = '$codigo'";
+  $sql = "INSERT INTO imagens (nm_imagem, id_produto) VALUES ('$name', '$codigo')";
   $bd->beginTransaction();
   $linhas = $bd->exec($sql);
   if ($linhas == 1) {
@@ -78,7 +79,7 @@ if (loadFile($arquivo1)) {
 if (loadFile($arquivo2)) {
   moveFile($arquivo2, "../../img/produtos/" . $nome . $cod . "-2.png");
   $name = $nome . $cod . "-2.png";
-  $sql = "UPDATE imagens SET nm_imagem = '$name' WHERE id_produto = '$codigo'";
+  $sql = "INSERT INTO imagens (nm_imagem, id_produto) VALUES ('$name', '$codigo')";
   $bd->beginTransaction();
   $linhas = $bd->exec($sql);
   if ($linhas == 1) {
@@ -90,7 +91,7 @@ if (loadFile($arquivo2)) {
 if (loadFile($arquivo3)) {
   moveFile($arquivo3, "../../img/produtos/" . $nome . $cod . "-3.png");
   $name = $nome . $cod . "-3.png";
-  $sql = "UPDATE imagens SET nm_imagem = '$name' WHERE id_produto = '$codigo'";
+  $sql = "INSERT INTO imagens (nm_imagem, id_produto) VALUES ('$name', '$codigo')";
   $bd->beginTransaction();
   $linhas = $bd->exec($sql);
   if ($linhas == 1) {
@@ -102,7 +103,7 @@ if (loadFile($arquivo3)) {
 if (loadFile($arquivo4)) {
   moveFile($arquivo4, "../../img/produtos/" . $nome . $cod . "-4.png");
   $name = $nome . $cod . "-4.png";
-  $sql = "UPDATE imagens SET nm_imagem = '$name' WHERE id_produto = '$codigo'";
+  $sql = "INSERT INTO imagens (nm_imagem, id_produto) VALUES ('$name', '$codigo')";
   $bd->beginTransaction();
   $linhas = $bd->exec($sql);
   if ($linhas == 1) {
@@ -114,7 +115,7 @@ if (loadFile($arquivo4)) {
 if (loadFile($arquivo5)) {
   moveFile($arquivo5, "../../img/produtos/" . $nome . $cod . "-5.png");
   $name = $nome . $cod . "-5.png";
-  $sql = "UPDATE imagens SET nm_imagem = '$name' WHERE id_produto = '$codigo'";
+  $sql = "INSERT INTO imagens (nm_imagem, id_produto) VALUES ('$name', '$codigo')";
   $bd->beginTransaction();
   $linhas = $bd->exec($sql);
   if ($linhas == 1) {

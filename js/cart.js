@@ -27,8 +27,8 @@ function renderCart() {
     if (item.quantity > 0) {
       itemsCart.innerHTML += `
             <tr>
-            <td>${item.title}</td>
-            <td>R$${item.price}</td>
+            <td>${item.name}</td>
+            <td>R$${item.value}</td>
             <td>
                 <div class="quantity">
                     <button onclick="updateCart('sum', ${item.id})">
@@ -43,7 +43,7 @@ function renderCart() {
                     </button>
                 </div>
             </td>
-            <td>R$${item.price * item.quantity}</td>
+            <td>R$${item.value * item.quantity}</td>
             </tr>
             `;
     } else {
@@ -54,7 +54,7 @@ function renderCart() {
     } else {
       showCartOrEmptyMessage(true);
     }
-    purchaseAmount += item.price * item.quantity;
+    purchaseAmount += item.value * item.quantity;
   });
 
   amount.textContent = purchaseAmount;

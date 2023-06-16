@@ -45,6 +45,7 @@ CREATE TABLE produtos (
     qt_estoque decimal(10,2) NOT NULL,
     dimensoes_produto char(50) NOT NULL,
     peso_produto decimal(7,3) NOT NULL,
+    status_produto char(10) NOT NULL DEFAULT 'Ativo',
     id_unidade_medida int,
     id_categoria int
 );

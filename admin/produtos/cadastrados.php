@@ -36,12 +36,6 @@ include_once '../../functions/views.php';
     include_once '../../functions/database.php';
     $banco = connection();
 
-    $sql_categoria = "SELECT id_categoria, ds_categoria FROM categorias ORDER BY ds_categoria";
-    $r_categoria = $banco->query($sql_categoria);
-
-    $sql_medida = "SELECT id_unidade_medida, ds_unidade_medida FROM unidades_medida ORDER BY ds_unidade_medida";
-    $r_medida = $banco->query($sql_medida);
-
     $sql_produtos = "SELECT
                 p.id_produto,
                 p.nm_produto,
@@ -57,6 +51,7 @@ include_once '../../functions/views.php';
             FROM produtos p
             INNER JOIN categorias c ON c.id_categoria = p.id_categoria
             INNER JOIN unidades_medida m ON m.id_unidade_medida = p.id_unidade_medida
+            WHERE p.status_produto = 'Ativo'
             ORDER BY p.nm_produto
             ";
     $resultado = $banco->query($sql_produtos);
@@ -123,6 +118,13 @@ include_once '../../functions/views.php';
                   <div class="fields">
                     <div>
                       <input type="text" value="<?= $registro["nm_produto"] ?>" name="nome" id="nome" placeholder="Nome">
+                      <?php
+                      $sql_categoria = "SELECT id_categoria, ds_categoria FROM categorias ORDER BY ds_categoria";
+                      $r_categoria = $banco->query($sql_categoria);
+
+                      $sql_medida = "SELECT id_unidade_medida, ds_unidade_medida FROM unidades_medida ORDER BY ds_unidade_medida";
+                      $r_medida = $banco->query($sql_medida);
+                      ?>
                       <select class="slct" name="categoria">
                         <?= selectList($r_categoria, ["id_categoria", "ds_categoria"], $registro['id_categoria'], "Selecione uma categoria") ?>
                       </select>

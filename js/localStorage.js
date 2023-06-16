@@ -24,31 +24,16 @@ function recordStorage(key, value) {
 
 function changeStorage(operation, id) {
   let cart = readStorage("cart");
-  let cartItem;
-
-  let index = 0;
-  let selectedItems = false;
-  do {
-    if (products[index].id === id) {
-      product = products[index];
-      cartItem = cart[index];
-      selectedItems = true;
-    } else {
-      index++;
-    }
-  } while (selectedItems == false);
 
   let i = 0;
   let updated = false;
   do {
-    if (products[i].id === id) {
+    if (cart[i].id === id) {
       if (operation === "sub") {
-        if (cartItem.quantity > 1) {
-          cartItem.quantity--;
-          product.stored++;
+        if (cart[i].quantity > 1) {
+          cart[i].quantity--;
         } else {
-          cartItem.quantity = 0;
-          product.stored++;
+          cart.splice(i, 1);
           iziToast.show({
             title: "Produto removido do carrinho",
             timeout: 2000,
@@ -57,13 +42,11 @@ function changeStorage(operation, id) {
         }
       }
       if (operation === "sum") {
-        if (product.stored > 0) {
-          cartItem.quantity++;
-          product.stored--;
-
+        if (cart[i].stored > cart[i].quantity) {
+          cart[i].quantity++;
           iziToast.show({
             title: "Item adicionado",
-            message: "quantidade: " + cartItem.quantity,
+            message: "quantidade: " + cart[i].quantity,
             timeout: 2000,
             color: "green",
           });
@@ -76,8 +59,7 @@ function changeStorage(operation, id) {
         }
       }
       if (operation === "delete") {
-        product.stored += cartItem.quantity;
-        cartItem.quantity = 0;
+        cart.splice(i, 1);
         iziToast.show({
           title: "Produto excluído do carrinho",
           timeout: 2000,
@@ -86,7 +68,6 @@ function changeStorage(operation, id) {
       }
 
       recordStorage("cart", cart);
-      recordStorage("products", products);
       updated = true;
     } else {
       i++;
@@ -135,6 +116,7 @@ function addToCart(item_id, nome, valor, qt) {
       name: nome,
       value: valor,
       quantity: 1,
+      stored: qt,
     });
     iziToast.show({
       title: "Produto adicionado",

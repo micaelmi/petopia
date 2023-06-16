@@ -5,7 +5,7 @@ include_once '../../functions/database.php';
 $bd = connection();
 $codigo = filter_input(INPUT_GET, 'codigo');
 
-$sql = "DELETE FROM produtos WHERE id_produto = '$codigo' ";
+$sql = "UPDATE produtos SET status_produto = 'Inativo' WHERE id_produto = '$codigo' ";
 
 try {
   $bd->beginTransaction();
