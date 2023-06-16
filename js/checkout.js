@@ -29,3 +29,35 @@ function renderCart() {
     }
   });
 }
+
+function clean() {
+  recordStorage("cart", []);
+  recordStorage("total", []);
+}
+
+// Obter o valor armazenado no localStorage
+var data = localStorage.getItem("cart");
+
+$.ajax({
+  url: "compra.php",
+  method: "POST",
+  data: { data: JSON.stringify(data) },
+  success: function (response) {
+    console.log(response);
+    console.log(data);
+
+    Cookies.set("cart", data, { expires: 1 });
+  },
+});
+
+// Enviar o valor para o servidor PHP usando uma solicitação AJAX
+// var xhttp = new XMLHttpRequest();
+// xhttp.onreadystatechange = function() {
+//   if (this.readyState === 4 && this.status === 200) {
+//     // A solicitação foi concluída com sucesso
+//     console.log('Dados enviados para o PHP.');
+//   }
+// };
+// xhttp.open("POST", "compra.php", true);
+// xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// xhttp.send("data=" + data);

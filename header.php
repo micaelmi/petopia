@@ -14,7 +14,7 @@
       <a href="./">Home</a>
       <a href="carrinho.php">Carrinho</a>
       <a href="historico.php">Histórico</a>
-      <a href="#">Sair</a>
+      <a href="./clientes/sair.php">Sair</a>
     </div>
   </div>
 </header>

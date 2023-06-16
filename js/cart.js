@@ -57,7 +57,7 @@ function renderCart() {
     purchaseAmount += item.value * item.quantity;
   });
 
-  amount.textContent = purchaseAmount;
+  amount.textContent = purchaseAmount.toFixed(2);
   recordStorage("total", purchaseAmount);
 }
 

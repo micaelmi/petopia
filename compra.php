@@ -1,4 +1,7 @@
 <?php
+$cart = $_COOKIE['cart'];
+$itens = json_decode($cart);
+
 if (isset($_COOKIE["login"])) {
   $data = unserialize($_COOKIE["login"]);
 }
@@ -31,8 +34,6 @@ $t = $registro_transportadora["transportadora"];
 $sql = "INSERT INTO compras (vl_comissao, vl_transporte, cpf_cnpj_cliente, cpf_cnpj_vendedor, cpf_cnpj_transportadora) 
 VALUES ('$comissao', '$frete', '$c', '$v', '$t')";
 
-echo $sql;
-
 try {
   $bd->beginTransaction();
   $linhas = $bd->exec($sql);
@@ -46,12 +47,37 @@ try {
   $params = dbError($ex);
 
   $bd = null;
-  // header("location:checkout.php?$params");
+  header("location:checkout.php?$params");
   die();
 }
 
 
+$sql_compra = "SELECT id_compra FROM compras ORDER BY id_compra DESC LIMIT 1";
+$compra = $bd->query($sql_compra);
+$registro_compra = $compra->fetch(PDO::FETCH_ASSOC);
+$id_compra = $registro_compra["id_compra"];
+
+foreach ($itens as $item) {
+
+  $id = $item->id;
+  $name = $item->name;
+  $value = $item->value;
+  $quantity = $item->quantity;
+  $stored = $item->stored;
+
+  $sql = "INSERT INTO itens_compra (vl_item_compra, qt_item_compra, id_compra, id_produto)
+  VALUES ('$value', '$quantity', '$id_compra', '$id');
+  UPDATE produtos SET qt_estoque = qt_estoque - $quantity
+  WHERE id_produto = '$id'";
+  $bd->beginTransaction();
+  $linhas = $bd->exec($sql);
+  if ($linhas == 1) {
+    $bd->commit();
+  } else {
+    $bd->rollBack();
+  }
+}
 
 $bd = null;
 
-header("location:index.php");
+header("location:concluida.php");

@@ -77,7 +77,7 @@ $resultado = $banco->query($sql);
           <img src="./img/produtos/<?= $registro['nm_imagem'] ?>" alt="<?= $registro['nm_produto'] ?>" />
           <h3>R$<?= $registro['vl_produto'] ?></h3>
           <h4><?= $registro['nm_produto'] ?></h4>
-          <p><?= $registro['ds_produto'] ?></p>
+          <p><?=substr($registro['ds_produto'], 0, 90) . (strlen($registro['ds_produto']) > 100 ? '...' : '')?></p>
           <a class="detalhes" href="./detalhes.php?id=<?= $registro['id_produto'] ?>">Detalhes</a>
         </div>
       <?php

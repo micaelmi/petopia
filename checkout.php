@@ -35,6 +35,8 @@ $r_vendedor = $banco->query($sql_vendedor);
   <link rel="stylesheet" href="./css/checkout.css" />
   <link rel="stylesheet" href="./css/menu.css" />
   <!-- JS -->
+  <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
   <script defer src="./js/iziToast.min.js"></script>
   <script defer src="./js/localStorage.js"></script>
   <script defer src="./js/menu.js"></script>
@@ -43,7 +45,7 @@ $r_vendedor = $banco->query($sql_vendedor);
 
 <body>
   <?php include_once 'header.php'; ?>
-  <main class="container">
+  <main class="container flex">
     <h1>Finalizar compra</h1>
     <div class="produtos">
       <table>
@@ -67,12 +69,11 @@ $r_vendedor = $banco->query($sql_vendedor);
       <select required class="slct" name="vendedor">
         <?= selectList($r_vendedor, ["id_vendedor", "nm_vendedor"], null, "Selecione um vendedor") ?>
       </select>
-      <br>
       <p>Valor do frete:</p>
       <input readonly required type="text" id="frete" name="frete">
       <p>Comissão do vendedor:</p>
       <input readonly required type="text" id="comissao" name="comissao">
-      <button type="submit">Comprar</button>
+      <button onclick="clean()" type="submit">Comprar</button>
     </form>
   </main>
   <?php include_once 'footer.php'; ?>

@@ -1,0 +1,9 @@
+## E-commerce php ##
+
+Integrantes:
+  - Deivid Gomes Zanotti
+  - Mayara de Andrade Ribeiro Leite
+  - Micael Miranda Inácio
+
+Para entrar no módulo de administrador,
+basta digitar '/admin' na url
