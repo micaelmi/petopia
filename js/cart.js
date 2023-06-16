@@ -58,6 +58,7 @@ function renderCart() {
   });
 
   amount.textContent = purchaseAmount;
+  recordStorage("total", purchaseAmount);
 }
 
 function updateCart(operation, id) {

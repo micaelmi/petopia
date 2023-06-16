@@ -24,9 +24,9 @@ CREATE TABLE compras (
     id_compra int PRIMARY KEY NOT NULL AUTO_INCREMENT,
     vl_comissao decimal(10,2) NOT NULL,
     vl_transporte decimal(10,2) NOT NULL,
-    cpf_cnpj_cliente int,
-    cpf_cnpj_vendedor int,
-    cpf_cnpj_transportadora int
+    cpf_cnpj_cliente char(20),
+    cpf_cnpj_vendedor char(20),
+    cpf_cnpj_transportadora char(20)
 );
 
 CREATE TABLE itens_compra (
@@ -81,15 +81,15 @@ CREATE TABLE transportadoras (
  
 ALTER TABLE compras ADD CONSTRAINT FK_compras_2
     FOREIGN KEY (cpf_cnpj_cliente)
-    REFERENCES clientes (id_cliente);
+    REFERENCES clientes (cpf_cnpj_cliente);
  
 ALTER TABLE compras ADD CONSTRAINT FK_compras_3
     FOREIGN KEY (cpf_cnpj_transportadora)
-    REFERENCES transportadoras (id_transportadora);
+    REFERENCES transportadoras (cpf_cnpj_transportadora);
  
 ALTER TABLE compras ADD CONSTRAINT FK_compras_4
     FOREIGN KEY (cpf_cnpj_vendedor)
-    REFERENCES vendedores (id_vendedor);
+    REFERENCES vendedores (cpf_cnpj_vendedor);
  
 ALTER TABLE itens_compra ADD CONSTRAINT FK_itens_compra_2
     FOREIGN KEY (id_compra)

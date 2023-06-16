@@ -1,0 +1,12 @@
+.slct {
+  width: 400px;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+table {
+  margin-bottom: 2rem;
+}
